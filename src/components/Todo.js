@@ -22,7 +22,7 @@ const Todo = ({ id, todos }) => {
         {todos}
       </label>
       {/* onClick={handleTrash} */}
-      <span style={{ cursor: "pointer" }}>Trash</span>
+      <button style={{ cursor: "pointer" }}>Trash</button>
     </div>
   );
 };
