@@ -1,26 +1,30 @@
 @import url("./assets/fonts/fonts.css");
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 :root {
-  --bg: ##e7e7e7;
-  --blue: #6264ec;
-  --black-border: #353535;
-  --red: #eb514f;
+    --bg: #f5f5f8;
+    --gray: #eee;
+    --blue: #4299e1;
+    --orange: #f6ad55;
+    --black-border: #353535;
+    --red: #eb514f;
 }
+
 html,
 body {
-  font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-size: 1.6rem;
-  font-family: "GilroyReg", sans-serif;
-  background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+    font-family: "GilroyReg", sans-serif;
+    background-color: var(--bg);
 }
+
 
 /* Title */
 
@@ -30,26 +34,85 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "GilroyBold";
+    font-family: "GilroyBold";
 }
 
 h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+    font-size: 4rem;
+    margin-bottom: 1rem;
 }
 
 header {
-  padding: 2rem 0;
-  margin-bottom: 2rem;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
 }
 
 .container {
-  width: 96rem;
-  margin: 0 auto;
+    width: 96rem;
+    margin: 0 auto;
 }
 
+.container_inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_form,
+.container_todos {
+    width: calc(50% - 20px);
+    padding: 2rem 1rem;
+}
+
+
+/* Form */
+
+.container_form {
+    background-color: var(--gray);
+    border-radius: 30px;
+    height: 100%;
+    box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
+}
+
+.container_form form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    align-items: baseline;
+}
+
+.container_form input,
+.container_form button {
+    font-family: inherit;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    height: 4.5rem;
+    border-radius: 1.5rem;
+    border: none;
+    width: calc(100% / 1.2);
+}
+
+.container_form button {
+    width: calc(100% / 1.8);
+    background-color: var(--black-border);
+    color: #fff;
+}
+
+.container_form input::placeholder {
+    padding-left: 2rem;
+}
+
+
 /* Checkbox */
+
 .todos_wrapper {
-  margin-bottom: 3.5rem;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    margin-bottom: 3.5rem;
+    display: flex;
+    border-radius: 15px;
+    background-color: var(--gray);
+    padding: 2rem 0;
+    box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
+}
+
+.todos_wrapper span {
+    flex: 1;
 }
