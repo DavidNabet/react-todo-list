@@ -1,70 +1,56 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import "./App.css";
+import Form from "./components/Form";
+import Todo from "./components/Todo";
+
+import { Container, Flex } from "@chakra-ui/react";
+
 function App() {
-  const [nbTask, setNbTask] = useState([
-    { name: "Balancer la vieille", status: false },
-    { name: "Faire chier les gens", status: false },
-    { name: "Péter plus haut que son derrière", status: true },
+  const [todos, setTodos] = useState([
+    { id: 0, name: "Balancer le vélo", status: false },
+    { id: 1, name: "Pratiquer une activité", status: false },
+    { id: 2, name: "Remplir le frigo", status: true },
   ]);
 
-  const [taskInput, setTaskInput] = useState("");
+  const [todoInput, setTodoInput] = useState("");
+  const TASK = [...todos];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newTasks = TASK;
+    newTasks.push({ name: todoInput, status: false });
+    setTodos(newTasks);
+    setTodoInput("");
+  };
 
   return (
-    <div className="container">
-      <Header />
-      <div className="form-group">
-        {nbTask.map((todos, i) => {
-          return (
-            <div key={i}>
-              <input
-                type="checkbox"
-                defaultChecked={todos.status}
-                onClick={() => {
-                  const newTodos = [...nbTask];
-                  newTodos[i].status = !newTodos[i].status;
-                  setTaskInput(newTodos);
-                }}
-              />
-              <span
-                style={{
-                  textDecoration:
-                    todos.status === true ? "line-through" : "none",
-                }}
-              >
-                {todos.name}
-              </span>
-              <button
-                onClick={() => {
-                  const remove = [...nbTask];
-                  remove.splice(i, 1);
-                  setTaskInput(remove);
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          );
-        })}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const newTask = [...nbTask];
-            newTask.push({ name: taskInput, status: false });
-            setNbTask(newTask);
-            setTaskInput("");
-          }}
+    <Container centerContent maxW="xl" margin="auto">
+      <Flex height="60vh" alignItems="center" justifyContent="center">
+        <Flex
+          direction="column"
+          width="inherit"
+          pt={5}
+          pb={5}
+          background="gray.100"
+          rounded={6}
+          alignItems="center"
         >
-          <input
-            placeholder="Ecrire une tâche"
-            type="text"
-            value={taskInput}
-            onChange={(e) => setTaskInput(e.target.value)}
-          />
-          <input type="submit" value="Ajouter" />
-        </form>
-      </div>
-    </div>
+          <Header />
+          <div className="container_inner">
+            {todos.map((todo, i) => {
+              return (
+                <Todo key={i} setTodos={setTodos} copyTask={TASK} todo={todo} />
+              );
+            })}
+            <Form
+              onSubmitForm={handleSubmit}
+              todoInput={todoInput}
+              setTodoInput={setTodoInput}
+            />
+          </div>
+        </Flex>
+      </Flex>
+    </Container>
   );
 }
 

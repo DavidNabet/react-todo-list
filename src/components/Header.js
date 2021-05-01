@@ -1,10 +1,11 @@
-import Logo from "./Logo";
+import { Heading } from "@chakra-ui/react";
 
 const Header = () => {
   return (
     <header>
-      <Logo />
-      <h1>Todo List</h1>
+      <Heading mt={4} mb={4} as="h1" size="2xl" isTruncated>
+        Todo List
+      </Heading>
     </header>
   );
 };

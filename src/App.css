@@ -1,45 +1,55 @@
-/* Other rules */
+@import url("./assets/fonts/fonts.css");
 * {
   box-sizing: border-box;
 }
 
 :root {
-  --violet: #5c48d3;
+  --bg: ##e7e7e7;
+  --blue: #6264ec;
+  --black-border: #353535;
+  --red: #eb514f;
+}
+html,
+body {
+  font-size: 62.5%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-size: 14px;
-  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-family: "GilroyReg", sans-serif;
+  background-color: var(--bg);
 }
 
 /* Title */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "GilroyBold";
+}
+
 h1 {
-  font-size: 30px;
-  line-height: 30px;
+  font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
 header {
-  padding: 20px 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-header h1 {
-  margin-left: 40px;
-}
-
-header svg {
-  width: 40px;
-  height: auto;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
 }
 
 .container {
-  width: 1220px;
+  width: 96rem;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+}
+
+/* Checkbox */
+.todos_wrapper {
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 }
