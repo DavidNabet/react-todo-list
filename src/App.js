@@ -62,9 +62,9 @@ function App() {
 						/>
 					</div>
 					<div className="container_todos">
-						<div className="container_filter">
+						{/* <div className="container_filter">
 							<Filter theme={theme} searchFilter={searchFilter} />
-						</div>
+						</div> */}
 
 						{todos.map((todo, i) => {
 							return (
