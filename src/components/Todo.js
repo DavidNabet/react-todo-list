@@ -1,15 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Todo = ({ todo, setTodos, copyTask, theme }) => {
+const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
 	const handleCheck = () => {
 		const newTodos = copyTask;
-		newTodos[todo.id].status = !newTodos[todo.id].status;
+		newTodos[id].status = !newTodos[id].status;
 		setTodos(newTodos);
 	};
 
 	const handleRemove = () => {
 		const remove = copyTask;
-		remove.splice(todo.id, 1);
+		remove.splice(id, 1);
 		setTodos(remove);
 	};
 

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import uuid from "uuid/dist/v1";
+// import uuid from "uuid/dist/v1";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/Header";
@@ -13,9 +13,9 @@ library.add(faTrash, faTrashAlt);
 function App() {
 	//L'ensemble des todos
 	const [todos, setTodos] = useState([
-		{ id: 0, name: "Balancer le vélo", status: false },
-		{ id: 1, name: "Pratiquer une activité", status: false },
-		{ id: 2, name: "Remplir le frigo", status: true },
+		{ name: "Balancer le vélo", status: false },
+		{ name: "Pratiquer une activité", status: false },
+		{ name: "Remplir le frigo", status: true },
 	]);
 
 	const [todoInput, setTodoInput] = useState("");
@@ -38,7 +38,7 @@ function App() {
 
 	//fonction simplifiée des spread operators qui va rajouter une todo avec un id aléatoire
 	const addTodo = (name) => {
-		setTodos([...todos, { name, id: uuid(), status: false }]);
+		setTodos([...todos, { name, status: false }]);
 	};
 
 	const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
@@ -66,10 +66,11 @@ function App() {
 							<Filter theme={theme} searchFilter={searchFilter} />
 						</div>
 
-						{results.map((todo, i) => {
+						{todos.map((todo, i) => {
 							return (
 								<Todo
 									key={i}
+									id={i}
 									theme={theme}
 									setTodos={setTodos}
 									copyTask={TASK}
