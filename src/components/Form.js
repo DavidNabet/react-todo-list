@@ -1,8 +1,18 @@
 import React from "react";
 
-const Form = ({ onSubmitForm, todoInput, setTodoInput }) => {
+const Form = ({ todoInput, setTodoInput, addTodo }) => {
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (!todoInput) {
+			alert("Renseignez une tâche !");
+		} else {
+			addTodo(todoInput);
+			setTodoInput("");
+		}
+	};
 	return (
-		<form onSubmit={onSubmitForm}>
+		//onSubmit={onSubmitForm}
+		<form onSubmit={handleSubmit}>
 			<input
 				placeholder="Ecrire une tâche"
 				type="text"
