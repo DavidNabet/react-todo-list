@@ -1,3 +1,3 @@
 # TodoList App
 
-TodoList React with Chakra UI
+TodoList React with Context API

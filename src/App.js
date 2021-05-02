@@ -47,7 +47,7 @@ function App() {
 	return (
 		<div className="wrapper" style={{ background: theme.background }}>
 			<div className="container">
-				<Header theme={theme} toggleTheme={toggleTheme} />
+				<Header theme={theme} isLight={isLight} toggleTheme={toggleTheme} />
 				<div className="container_inner">
 					<div
 						className="container_form"
@@ -71,7 +71,6 @@ function App() {
 								<Todo
 									key={i}
 									theme={theme}
-									// id={i}
 									setTodos={setTodos}
 									copyTask={TASK}
 									todo={todo}
