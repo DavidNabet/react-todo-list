@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/Header";
 import Form from "./components/Form";
-import "./App.css";
 import Todo from "./components/Todo";
+import "./App.css";
+library.add(faTrash, faTrashAlt);
 
 function App() {
 	const [todos, setTodos] = useState([
-		{ id: 0, name: "Balancer le vélo", status: false },
-		{ id: 1, name: "Pratiquer une activité", status: false },
-		{ id: 2, name: "Remplir le frigo", status: true },
+		{ name: "Balancer le vélo", status: false },
+		{ name: "Pratiquer une activité", status: false },
+		{ name: "Remplir le frigo", status: true },
 	]);
 
 	const [todoInput, setTodoInput] = useState("");
@@ -17,9 +20,13 @@ function App() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const newTasks = TASK;
-		newTasks.push({ name: todoInput, status: false });
-		setTodos(newTasks);
-		setTodoInput("");
+		if (!todoInput) {
+			alert("Renseignez une tâche !");
+		} else {
+			newTasks.push({ name: todoInput, status: false });
+			setTodos(newTasks);
+			setTodoInput("");
+		}
 	};
 
 	return (
@@ -36,7 +43,13 @@ function App() {
 				<div className="container_todos">
 					{todos.map((todo, i) => {
 						return (
-							<Todo key={i} setTodos={setTodos} copyTask={TASK} todo={todo} />
+							<Todo
+								key={i}
+								id={i}
+								setTodos={setTodos}
+								copyTask={TASK}
+								todo={todo}
+							/>
 						);
 					})}
 				</div>

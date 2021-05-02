@@ -1,4 +1,5 @@
 @import url("./assets/fonts/fonts.css");
+@import url("./checkbox.css");
 * {
     box-sizing: border-box;
 }
@@ -9,7 +10,8 @@
     --blue: #4299e1;
     --orange: #f6ad55;
     --black-border: #353535;
-    --red: #eb514f;
+    --red: #f6543e;
+    --box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
 }
 
 html,
@@ -70,7 +72,7 @@ header {
     background-color: var(--gray);
     border-radius: 30px;
     height: 100%;
-    box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
+    box-shadow: var(--box-shadow);
 }
 
 .container_form form {
@@ -89,16 +91,30 @@ header {
     border-radius: 1.5rem;
     border: none;
     width: calc(100% / 1.2);
+    outline: none;
+}
+
+.container_form input {
+    padding-left: 1.5rem;
+}
+
+.container_form input:focus {
+    box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em var(--blue);
 }
 
 .container_form button {
     width: calc(100% / 1.8);
     background-color: var(--black-border);
     color: #fff;
+    cursor: pointer;
 }
 
-.container_form input::placeholder {
-    padding-left: 2rem;
+.container_form input.is-invalid {
+    border: 1px solid var(--red);
+}
+
+.container_form button:hover {
+    opacity: 0.8;
 }
 
 
@@ -107,12 +123,60 @@ header {
 .todos_wrapper {
     margin-bottom: 3.5rem;
     display: flex;
+    align-items: center;
     border-radius: 15px;
     background-color: var(--gray);
-    padding: 2rem 0;
+    /* padding: 2rem 0; */
     box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
 }
 
-.todos_wrapper span {
+.todos_wrapper:first-child {
+    margin-top: -1.5rem;
+}
+
+.todos_wrapper label {
     flex: 1;
+}
+
+.todos_wrapper .on-trash {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    /* border: 1px solid; */
+    text-decoration: none;
+    background-color: var(--gray);
+    color: var(--black-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: 1;
+    transition: background-color 800ms ease-in, color 1s ease-in;
+}
+
+.todos_wrapper .on-trash::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--red);
+    transform-origin: center right;
+    transform: scaleX(0);
+    transition: transform 1s ease-in-out;
+}
+
+.todos_wrapper .on-trash:hover {
+    color: white;
+}
+
+.todos_wrapper .on-trash:hover::before {
+    transform-origin: center left;
+    transform: scaleX(1);
+    cursor: pointer;
 }

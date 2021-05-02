@@ -9,7 +9,9 @@ const Form = ({ onSubmitForm, todoInput, setTodoInput }) => {
 				value={todoInput}
 				onChange={(e) => setTodoInput(e.target.value)}
 			/>
-			<button>Ajouter une tâche</button>
+			<button style={{ cursor: !todoInput ? "no-drop" : "pointer" }}>
+				Ajouter une tâche
+			</button>
 		</form>
 	);
 };
