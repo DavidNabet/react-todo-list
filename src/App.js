@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import uuid from "uuid/dist/v1";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Todo from "./components/Todo";
-import "./App.css";
 import Filter from "./components/Filter";
+import { ThemeContext } from "./context/ThemeContext";
+import "./App.css";
 library.add(faTrash, faTrashAlt);
 
 function App() {
@@ -40,34 +41,44 @@ function App() {
 		setTodos([...todos, { name, id: uuid(), status: false }]);
 	};
 
-	return (
-		<div className="container">
-			<Header />
-			<div className="container_inner">
-				<div className="container_form">
-					<Form
-						// onSubmitForm={handleSubmit}
-						addTodo={addTodo}
-						todoInput={todoInput}
-						setTodoInput={setTodoInput}
-					/>
-				</div>
-				<div className="container_todos">
-					<div className="container_filter">
-						<Filter searchFilter={searchFilter} />
-					</div>
+	const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
+	const theme = isLight ? light : dark;
 
-					{results.map((todo, i) => {
-						return (
-							<Todo
-								key={i}
-								// id={i}
-								setTodos={setTodos}
-								copyTask={TASK}
-								todo={todo}
-							/>
-						);
-					})}
+	return (
+		<div className="wrapper" style={{ background: theme.background }}>
+			<div className="container">
+				<Header theme={theme} toggleTheme={toggleTheme} />
+				<div className="container_inner">
+					<div
+						className="container_form"
+						style={{ background: theme.bgCard, boxShadow: theme.boxShadow }}
+					>
+						<Form
+							// onSubmitForm={handleSubmit}
+							addTodo={addTodo}
+							theme={theme}
+							todoInput={todoInput}
+							setTodoInput={setTodoInput}
+						/>
+					</div>
+					<div className="container_todos">
+						<div className="container_filter">
+							<Filter theme={theme} searchFilter={searchFilter} />
+						</div>
+
+						{results.map((todo, i) => {
+							return (
+								<Todo
+									key={i}
+									theme={theme}
+									// id={i}
+									setTodos={setTodos}
+									copyTask={TASK}
+									todo={todo}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</div>

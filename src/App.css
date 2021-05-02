@@ -11,11 +11,10 @@
     --orange: #f6ad55;
     --black-border: #303847;
     --red: #f6543e;
-    --box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
+    --box-shadow: 5px 10px 16px 0 rgba(57, 57, 57, 0.1);
 }
 
-html,
-body {
+html {
     font-size: 62.5%;
 }
 
@@ -24,7 +23,6 @@ body {
     padding: 0;
     font-size: 1.6rem;
     font-family: "GilroyReg", sans-serif;
-    background-color: var(--bg);
 }
 
 input[type="text"]::placeholder {
@@ -54,17 +52,23 @@ h1 {
 header {
     display: flex;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 3rem 0;
     margin-bottom: 2rem;
 }
 
 header button {
     width: auto !important;
-    background: transparent !important;
+    background: var(--red) !important;
 }
 
 
 /* Container */
+
+.wrapper {
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg);
+}
 
 .container {
     width: 96rem;
@@ -161,7 +165,7 @@ header button {
     border-radius: 15px;
     background-color: var(--gray);
     /* padding: 2rem 0; */
-    box-shadow: 5px 10px 16px 0 rgb(57 57 57 / 10%);
+    box-shadow: var(--box-shadow);
 }
 
 .todos_wrapper:first-child {
@@ -187,7 +191,8 @@ header button {
     box-shadow: var(--box-shadow);
     position: relative;
     z-index: 1;
-    transition: background-color 800ms ease-in, color 1s ease-in;
+    overflow: hidden;
+    /* transition: background-color 800ms ease-in, color 1s ease-in; */
 }
 
 .todos_wrapper .on-trash::before {
@@ -206,7 +211,7 @@ header button {
 }
 
 .todos_wrapper .on-trash:hover {
-    color: white;
+    color: #fff !important;
 }
 
 .todos_wrapper .on-trash:hover::before {

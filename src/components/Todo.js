@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Todo = ({ todo, setTodos, copyTask }) => {
+const Todo = ({ todo, setTodos, copyTask, theme }) => {
 	const handleCheck = () => {
 		const newTodos = copyTask;
 		newTodos[todo.id].status = !newTodos[todo.id].status;
@@ -14,7 +14,10 @@ const Todo = ({ todo, setTodos, copyTask }) => {
 	};
 
 	return (
-		<div className="todos_wrapper">
+		<div
+			className="todos_wrapper"
+			style={{ background: theme.bgCard, color: theme.button }}
+		>
 			<input
 				type="checkbox"
 				name="todo"
@@ -31,7 +34,15 @@ const Todo = ({ todo, setTodos, copyTask }) => {
 			>
 				{todo.name}
 			</label>
-			<span className="on-trash" onClick={handleRemove}>
+			<span
+				style={{
+					background: theme.bgCard,
+					color: theme.foreground,
+					boxShadow: theme.boxShadow,
+				}}
+				className="on-trash"
+				onClick={handleRemove}
+			>
 				<FontAwesomeIcon icon="trash" />
 			</span>
 		</div>

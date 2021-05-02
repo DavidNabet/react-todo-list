@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form = ({ todoInput, setTodoInput, addTodo }) => {
+const Form = ({ todoInput, setTodoInput, addTodo, theme }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!todoInput) {
@@ -19,7 +19,13 @@ const Form = ({ todoInput, setTodoInput, addTodo }) => {
 				value={todoInput}
 				onChange={(e) => setTodoInput(e.target.value)}
 			/>
-			<button style={{ cursor: !todoInput ? "no-drop" : "pointer" }}>
+			<button
+				style={{
+					cursor: !todoInput ? "no-drop" : "pointer",
+					background: theme.button,
+					color: theme.background,
+				}}
+			>
 				Ajouter une tâche
 			</button>
 		</form>
