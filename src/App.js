@@ -13,14 +13,16 @@ library.add(faTrash, faTrashAlt);
 function App() {
   //L'ensemble des todos
   const [todos, setTodos] = useState([
-    { name: "Balancer le vélo", status: false },
-    { name: "Pratiquer une activité", status: false },
-    { name: "Remplir le frigo", status: true },
+    { name: "Balancer le vélo", status: false, id: 0 },
+    { name: "Pratiquer une activité", status: false, id: 1 },
+    { name: "Remplir le frigo", status: true, id: 2 },
   ]);
 
   const [todoInput, setTodoInput] = useState("");
   //On garde une copie des todos, qu'on dispatchera dans chaque component Todo
   const TASK = [...todos];
+
+  // .sort() pour avoir les
 
   //Tableau des todos
   //   const [results, setResults] = useState(todos);
@@ -36,8 +38,15 @@ function App() {
     setResults(todoFilter);
   }; */
 
+  const findByLastId = (i) => {
+    return todos.find((todo) => todo.id === i);
+  };
+
+  console.log(findByLastId());
+
   //fonction simplifiée des spread operators qui va rajouter une todo avec un id aléatoire
   const addTodo = (name) => {
+    //id: todos[todos.length - 1].id++
     setTodos([...todos, { name, status: false }]);
   };
 
