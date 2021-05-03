@@ -13,21 +13,21 @@ const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
     setTodos(remove);
   };
 
-  const handle = () => {
-    const orderedTab = [];
-    for (let i = 0; i < copyTask.length; i++) {
-      if (copyTask[i].status === false) {
-        orderedTab.push(copyTask[i]);
-      }
-    }
-    for (let i = 0; i < copyTask.length; i++) {
-      if (copyTask[i].status === true) {
-        orderedTab.push(copyTask[i]);
-      }
-    }
+  // const handle = () => {
+  //   const orderedTab = [];
+  //   for (let i = 0; i < copyTask.length; i++) {
+  //     if (copyTask[i].status === false) {
+  //       orderedTab.push(copyTask[i]);
+  //     }
+  //   }
+  //   for (let i = 0; i < copyTask.length; i++) {
+  //     if (copyTask[i].status === true) {
+  //       orderedTab.push(copyTask[i]);
+  //     }
+  //   }
 
-    setTodos(orderedTab);
-  };
+  //   setTodos(orderedTab);
+  // };
 
   return (
     <div
