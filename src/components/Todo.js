@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Todo = ({ todo, setTodos, copyTask, theme }) => {
+const Todo = ({ todo, setTodos, copyTask, theme, findByLastId }) => {
 	const handleCheck = () => {
 		const newTodos = copyTask;
 		newTodos[todo.id].status = !newTodos[todo.id].status;
@@ -39,7 +39,7 @@ const Todo = ({ todo, setTodos, copyTask, theme }) => {
 				name="todo"
 				id="todo"
 				defaultChecked={todo.status}
-				onClick={handleCheck}
+				onClick={() => handleCheck()}
 			/>
 			<label
 				htmlFor="todo"
