@@ -13,19 +13,14 @@ library.add(faTrash, faTrashAlt);
 function App() {
 	//L'ensemble des todos
 	const [todos, setTodos] = useState([
-		{ name: "Balancer le vélo", status: false, id: 1 },
-		{ name: "Pratiquer une activité", status: false, id: 2 },
-		{ name: "Remplir le frigo", status: true, id: 3 },
+		{ name: "Balancer le vélo", status: false },
+		{ name: "Pratiquer une activité", status: false },
+		{ name: "Remplir le frigo", status: false },
 	]);
 
 	const [todoInput, setTodoInput] = useState("");
 	//On garde une copie des todos, qu'on dispatchera dans chaque component Todo
-	const TASK = [...todos];
-
 	// .sort() pour avoir les
-
-	//Tableau des todos
-	//   const [results, setResults] = useState(todos);
 
 	//fonction qui va filtrer les todos par title
 	/*   const searchFilter = (event) => {
@@ -38,17 +33,10 @@ function App() {
     setResults(todoFilter);
   }; */
 
-	const findByLastId = (i) => {
-		return todos.find((todo) => todo.id === i);
-	};
-
 	//fonction simplifiée des spread operators qui va rajouter une todo avec un id aléatoire
 	const addTodo = (name) => {
 		//id: todos[todos.length - 1].id++
-		setTodos([
-			...todos,
-			{ name, status: false, id: todos[todos.length - 1].id + 1 },
-		]);
+		setTodos([...todos, { name, status: false }]);
 	};
 
 	const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
@@ -80,12 +68,11 @@ function App() {
 							return (
 								<Todo
 									key={i}
-									// id={i}
+									id={i}
 									theme={theme}
 									setTodos={setTodos}
-									copyTask={TASK}
+									copyTask={[...todos]}
 									todo={todo}
-									findByLastId={findByLastId}
 								/>
 							);
 						})}
