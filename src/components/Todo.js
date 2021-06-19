@@ -1,33 +1,29 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
-	const handleCheck = () => {
-		const newTodos = copyTask;
-		newTodos[id].status = !newTodos[id].status;
-		setTodos(newTodos);
+const Todo = ({
+	todo,
+	handleCheck,
+	copyTask,
+	handleRemove,
+	theme,
+	idx,
+	setTodos,
+}) => {
+	const handle = () => {
+		const orderedTab = [];
+		for (let i = 0; i < copyTask.length; i++) {
+			if (copyTask[i].status === false) {
+				orderedTab.push(copyTask[i]);
+			}
+		}
+		for (let i = 0; i < copyTask.length; i++) {
+			if (copyTask[i].status === true) {
+				orderedTab.push(copyTask[i]);
+			}
+		}
+
+		setTodos(orderedTab);
 	};
-
-	const handleRemove = () => {
-		const remove = copyTask;
-		remove.splice(id, 1);
-		setTodos(remove);
-	};
-
-	// const handle = () => {
-	//   const orderedTab = [];
-	//   for (let i = 0; i < copyTask.length; i++) {
-	//     if (copyTask[i].status === false) {
-	//       orderedTab.push(copyTask[i]);
-	//     }
-	//   }
-	//   for (let i = 0; i < copyTask.length; i++) {
-	//     if (copyTask[i].status === true) {
-	//       orderedTab.push(copyTask[i]);
-	//     }
-	//   }
-
-	//   setTodos(orderedTab);
-	// };
 
 	return (
 		<div
@@ -39,7 +35,7 @@ const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
 				name="todo"
 				id="todo"
 				defaultChecked={todo.status}
-				onClick={handleCheck}
+				onClick={() => handleCheck(idx)}
 			/>
 			<label
 				htmlFor="todo"
@@ -57,7 +53,7 @@ const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
 					boxShadow: theme.boxShadow,
 				}}
 				className="on-trash"
-				onClick={handleRemove}
+				onClick={() => handleRemove(idx)}
 			>
 				<FontAwesomeIcon icon="trash-alt" />
 			</span>

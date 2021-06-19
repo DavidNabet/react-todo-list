@@ -39,6 +39,18 @@ function App() {
 		setTodos([...todos, { name, status: false }]);
 	};
 
+	const handleCheck = (i) => {
+		const newTodos = [...todos];
+		newTodos[i].status = !newTodos[i].status;
+		setTodos(newTodos);
+	};
+
+	const handleRemove = (i) => {
+		const remove = [...todos];
+		remove.splice(i, 1);
+		setTodos(remove);
+	};
+
 	const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
 	const theme = isLight ? light : dark;
 
@@ -68,11 +80,13 @@ function App() {
 							return (
 								<Todo
 									key={i}
-									id={i}
+									idx={i}
 									theme={theme}
-									setTodos={setTodos}
-									copyTask={[...todos]}
+									handleCheck={handleCheck}
+									handleRemove={handleRemove}
+									copyTask={todos}
 									todo={todo}
+									setTodos={setTodos}
 								/>
 							);
 						})}
