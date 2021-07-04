@@ -51,6 +51,8 @@ function App() {
 		setTodos(remove);
 	};
 
+	console.log(useContext(ThemeContext));
+
 	const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
 	const theme = isLight ? light : dark;
 
