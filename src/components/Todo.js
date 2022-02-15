@@ -8,8 +8,10 @@ const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
   };
 
   const handleRemove = () => {
-    const remove = copyTask;
-    remove.splice(id, 1);
+    // const remove = copyTask;
+    // remove.splice(id, 1);
+    // setTodos(remove);
+    const remove = copyTask.filter((task) => task.id !== id);
     setTodos(remove);
   };
 
@@ -36,13 +38,13 @@ const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
     >
       <input
         type="checkbox"
-        name="todo"
-        id="todo"
+        name={`todo-${id}`}
+        id={`todo-${id}`}
         defaultChecked={todo.status}
         onClick={handleCheck}
       />
       <label
-        htmlFor="todo"
+        htmlFor={`todo-${id}`}
         style={{
           textDecoration: todo.status ? "line-through" : "none",
           color: todo.status ? "grey" : "inherit",

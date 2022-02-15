@@ -5,7 +5,7 @@ import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Todo from "./components/Todo";
-// import Filter from "./components/Filter";
+import Filter from "./components/Filter";
 import { ThemeContext } from "./context/ThemeContext";
 import "./App.css";
 library.add(faTrash, faTrashAlt);
@@ -19,35 +19,31 @@ function App() {
   ]);
 
   const [todoInput, setTodoInput] = useState("");
+  // le résultat de la recherche
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState(todos);
+
   //On garde une copie des todos, qu'on dispatchera dans chaque component Todo
   const TASK = [...todos];
 
-  // .sort() pour avoir les
-
-  //Tableau des todos
-  //   const [results, setResults] = useState(todos);
-
   //fonction qui va filtrer les todos par title
-  /*   const searchFilter = (event) => {
-    let todoFilter = todos.filter((todo) => {
-      if (todo.name.toLowerCase().includes(event.target.value.toLowerCase())) {
-        return true;
-      }
-      return false;
-    });
-    setResults(todoFilter);
-  }; */
-
-  const findByLastId = (i) => {
-    return todos.find((todo) => todo.id === i);
+  const searchFilter = (e) => {
+    const keyword = e.target.value;
+    if (keyword !== "") {
+      const results = todos.filter((todo) => {
+        return todo.name.toLowerCase().startsWith(keyword.toLowerCase());
+      });
+      setSearch(results);
+    } else {
+      setSearch(todos);
+    }
+    setSearchInput(keyword);
   };
-
-  console.log(findByLastId());
 
   //fonction simplifiée des spread operators qui va rajouter une todo avec un id aléatoire
   const addTodo = (name) => {
-    //id: todos[todos.length - 1].id++
-    setTodos([...todos, { name, status: false }]);
+    const id = todos.at(-1).id + 1;
+    setTodos([...todos, { name, status: false, id }]);
   };
 
   const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
@@ -71,22 +67,35 @@ function App() {
             />
           </div>
           <div className="container_todos">
-            {/* <div className="container_filter">
-							<Filter theme={theme} searchFilter={searchFilter} />
-						</div> */}
+            <div className="container_filter">
+              <Filter
+                theme={theme}
+                searchInput={searchInput}
+                searchFilter={searchFilter}
+              />
+            </div>
 
-            {todos.map((todo, i) => {
-              return (
-                <Todo
-                  key={i}
-                  id={i}
-                  theme={theme}
-                  setTodos={setTodos}
-                  copyTask={TASK}
-                  todo={todo}
-                />
-              );
-            })}
+            {searchInput !== ""
+              ? search.map((todo, i) => (
+                  <Todo
+                    key={i}
+                    id={i}
+                    theme={theme}
+                    setTodos={setTodos}
+                    copyTask={TASK}
+                    todo={todo}
+                  />
+                ))
+              : todos.map((todo, i) => (
+                  <Todo
+                    key={i}
+                    id={i}
+                    theme={theme}
+                    setTodos={setTodos}
+                    copyTask={TASK}
+                    todo={todo}
+                  />
+                ))}
           </div>
         </div>
       </div>
