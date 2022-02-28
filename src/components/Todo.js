@@ -1,70 +1,53 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
-  const handleCheck = () => {
-    const newTodos = copyTask;
-    newTodos[id].status = !newTodos[id].status;
-    setTodos(newTodos);
-  };
+	const handleCheck = (id, status) => {
+		const updated = copyTask.filter((task) => {
+			task.id === id && (task.status = !task.status);
+			return task;
+		});
+		setTodos(updated);
+	};
 
-  const handleRemove = () => {
-    // const remove = copyTask;
-    // remove.splice(id, 1);
-    // setTodos(remove);
-    const remove = copyTask.filter((task) => task.id !== id);
-    setTodos(remove);
-  };
+	const handleRemove = () => {
+		const remove = copyTask.filter((task) => task.id !== id);
+		setTodos(remove);
+	};
 
-  // const handle = () => {
-  //   const orderedTab = [];
-  //   for (let i = 0; i < copyTask.length; i++) {
-  //     if (copyTask[i].status === false) {
-  //       orderedTab.push(copyTask[i]);
-  //     }
-  //   }
-  //   for (let i = 0; i < copyTask.length; i++) {
-  //     if (copyTask[i].status === true) {
-  //       orderedTab.push(copyTask[i]);
-  //     }
-  //   }
-
-  //   setTodos(orderedTab);
-  // };
-
-  return (
-    <div
-      className="todos_wrapper"
-      style={{ background: theme.bgCard, color: theme.button }}
-    >
-      <input
-        type="checkbox"
-        name={`todo-${id}`}
-        id={`todo-${id}`}
-        defaultChecked={todo.status}
-        onClick={handleCheck}
-      />
-      <label
-        htmlFor={`todo-${id}`}
-        style={{
-          textDecoration: todo.status ? "line-through" : "none",
-          color: todo.status ? "grey" : "inherit",
-        }}
-      >
-        {todo.name}
-      </label>
-      <span
-        style={{
-          background: theme.bgCard,
-          color: theme.foreground,
-          boxShadow: theme.boxShadow,
-        }}
-        className="on-trash"
-        onClick={handleRemove}
-      >
-        <FontAwesomeIcon icon="trash" />
-      </span>
-    </div>
-  );
+	return (
+		<div
+			className="todos_wrapper"
+			style={{ background: theme.bgCard, color: theme.button }}
+		>
+			<input
+				type="checkbox"
+				name={`todo-${id}`}
+				id={`todo-${id}`}
+				defaultChecked={todo.status}
+				onClick={() => handleCheck(id)}
+			/>
+			<label
+				htmlFor={`todo-${id}`}
+				style={{
+					textDecoration: todo.status ? "line-through" : "none",
+					color: todo.status ? "grey" : "inherit",
+				}}
+			>
+				{todo.name}
+			</label>
+			<span
+				style={{
+					background: theme.bgCard,
+					color: theme.foreground,
+					boxShadow: theme.boxShadow,
+				}}
+				className={`on-trash ${todo.status === true ? "active" : ""}`}
+				onClick={handleRemove}
+			>
+				<FontAwesomeIcon icon="trash" />
+			</span>
+		</div>
+	);
 };
 
 export default Todo;
