@@ -1,45 +1,208 @@
-/* Other rules */
+@import url("./assets/fonts/fonts.css");
+@import url("./checkbox.css");
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 :root {
-  --violet: #5c48d3;
+    --bg: #f5f5f8;
+    --gray: #eee;
+    --blue: #4299e1;
+    --orange: #f6ad55;
+    --black-border: #303847;
+    --red: #f6543e;
+    --box-shadow: 5px 10px 16px 0 rgba(57, 57, 57, 0.1);
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+    font-family: "GilroyReg", sans-serif;
 }
+
+input[type="text"]::placeholder {
+    color: #545454;
+}
+
 
 /* Title */
-h1 {
-  font-size: 30px;
-  line-height: 30px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "GilroyBold";
 }
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+
+/* Header */
 
 header {
-  padding: 20px 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
 }
 
-header h1 {
-  margin-left: 40px;
+header button {
+    width: auto !important;
+    background: var(--red) !important;
 }
 
-header svg {
-  width: 40px;
-  height: auto;
+
+/* Container */
+
+.wrapper {
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg);
 }
 
 .container {
-  width: 1220px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+    width: 96rem;
+    margin: 0 auto;
+}
+
+.container_inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_form,
+.container_todos {
+    width: calc(50% - 20px);
+    padding: 2rem 1rem;
+}
+
+
+/* Form */
+
+.container_form {
+    background-color: var(--gray);
+    border-radius: 30px;
+    height: 100%;
+    box-shadow: var(--box-shadow);
+}
+
+.container_form form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    align-items: baseline;
+}
+
+.container_form input,
+.container_form button,
+.container_filter input,
+header button {
+    font-family: inherit;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    height: 4.5rem;
+    border-radius: 1.5rem;
+    border: none;
+    width: calc(100% / 1.2);
+    outline: none;
+}
+
+.container_form input,
+.container_filter input {
+    padding-left: 1.5rem;
+}
+
+.container_form input:focus {
+    box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em var(--blue);
+}
+
+.container_form button,
+header button {
+    width: calc(100% / 1.8);
+    background-color: var(--black-border);
+    color: #fff;
+    cursor: pointer;
+}
+
+.container_form input.is-invalid {
+    border: 1px solid var(--red);
+}
+
+.container_form button:hover {
+    opacity: 0.8;
+}
+
+
+/* Filter Search */
+
+.container_filter {
+    justify-content: center;
+}
+
+.container_filter input {
+    width: 100% !important;
+    background: #fff !important;
+}
+
+
+/* Checkbox */
+
+.todos_wrapper,
+.container_filter input {
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    background-color: var(--gray);
+    /* padding: 2rem 0; */
+    box-shadow: var(--box-shadow);
+}
+
+.todos_wrapper:first-child {
+    margin-top: -1.5rem;
+}
+
+.todos_wrapper label {
+    flex: 1;
+}
+
+.todos_wrapper .on-trash {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    /* border: 1px solid; */
+    text-decoration: none;
+    background-color: var(--gray);
+    color: var(--black-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    cursor: no-drop;
+    opacity: 0.5;
+}
+
+.todos_wrapper .on-trash.active:hover {
+    background-color: #f6543e !important;
+    color: #fff !important;
+}
+
+.todos_wrapper .on-trash.active {
+    cursor: pointer;
+    opacity: 1;
 }
