@@ -231,7 +231,7 @@ header button {
     }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 481px) {
     header button {
         padding: 0 16px;
     }
