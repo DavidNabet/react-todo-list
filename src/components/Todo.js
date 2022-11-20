@@ -11,7 +11,9 @@ const Todo = ({ todo, setTodos, copyTask, theme, id }) => {
 
 	const handleRemove = () => {
 		const remove = copyTask.filter((task) => task.id !== id);
-		setTodos(remove);
+		if(todo.status){
+			setTodos(remove);
+		}
 	};
 
 	return (
