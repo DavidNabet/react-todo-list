@@ -17,19 +17,20 @@ library.add(faTrash, faTrashAlt, faSun, faMoon);
 
 function App() {
   //L'ensemble des todos
-  const [todos, setTodos] = useState([
-    { name: "Balancer le vélo", status: false, id: 1 },
-    { name: "Pratiquer une activité", status: false, id: 2 },
-    { name: "Remplir le frigo", status: true, id: 3 },
-  ]);
+  // const [todos, setTodos] = useState([
+  //   { name: "Balancer le vélo", status: false, id: 1 },
+  //   { name: "Pratiquer une activité", status: false, id: 2 },
+  //   { name: "Remplir le frigo", status: true, id: 3 },
+  // ]);
 
   const [todoInput, setTodoInput] = useState("");
   // le résultat de la recherche
   const [searchInput, setSearchInput] = useState("");
-  const [search, setSearch] = useState(todos);
+  // const [search, setSearch] = useState(todos);
+  const [search, setSearch] = useState();
 
   //On garde une copie des todos, qu'on dispatchera dans chaque component Todo
-  const TASK = [...todos];
+  // const TASK = [...todos];
 
   //fonction qui va filtrer les todos par title
   const searchFilter = (e) => {
