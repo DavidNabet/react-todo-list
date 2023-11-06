@@ -13,6 +13,8 @@ import Todo from "./components/Todo";
 import Filter from "./components/Filter";
 import { ThemeContext } from "./context/ThemeContext";
 import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo } from "./features/TodoSlice";
 library.add(faTrash, faTrashAlt, faSun, faMoon);
 
 function App() {
@@ -23,6 +25,10 @@ function App() {
   //   { name: "Remplir le frigo", status: true, id: 3 },
   // ]);
 
+  const todos = useSelector((state) => state?.todos?.todos);
+  console.log(todos);
+  const dispatch = useDispatch();
+
   const [todoInput, setTodoInput] = useState("");
   // le résultat de la recherche
   const [searchInput, setSearchInput] = useState("");
@@ -30,7 +36,7 @@ function App() {
   const [search, setSearch] = useState();
 
   //On garde une copie des todos, qu'on dispatchera dans chaque component Todo
-  // const TASK = [...todos];
+  const TASK = [...todos];
 
   //fonction qui va filtrer les todos par title
   const searchFilter = (e) => {
@@ -47,9 +53,13 @@ function App() {
   };
 
   //fonction simplifiée des spread operators qui va rajouter une todo avec un id aléatoire
-  const addTodo = (name) => {
-    const id = todos.at(-1).id + 1;
-    setTodos([...todos, { name, status: false, id }]);
+  // const addTodo = (name) => {
+  //   const id = todos.at(-1).id + 1;
+  //   setTodos([...todos, { name, status: false, id }]);
+  // };
+
+  const addTodoAction = (name) => {
+    return dispatch(addTodo({ name }));
   };
 
   const { toggleTheme, light, dark, isLight } = useContext(ThemeContext);
@@ -66,7 +76,7 @@ function App() {
           >
             <Form
               // onSubmitForm={handleSubmit}
-              addTodo={addTodo}
+              addTodo={addTodoAction}
               theme={theme}
               todoInput={todoInput}
               setTodoInput={setTodoInput}
@@ -87,7 +97,6 @@ function App() {
                     key={todo.id}
                     id={todo.id}
                     theme={theme}
-                    setTodos={setTodos}
                     copyTask={TASK}
                     todo={todo}
                   />
@@ -97,7 +106,6 @@ function App() {
                     key={todo.id}
                     id={todo.id}
                     theme={theme}
-                    setTodos={setTodos}
                     copyTask={TASK}
                     todo={todo}
                   />

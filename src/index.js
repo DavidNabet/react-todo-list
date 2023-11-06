@@ -4,10 +4,11 @@ import "./index.css";
 import App from "./App";
 import { ThemeContextProvider } from "./context/ThemeContext";
 import { Provider } from "react-redux";
+import store from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
+    <Provider store={store}>
       <ThemeContextProvider>
         <App />
       </ThemeContextProvider>
