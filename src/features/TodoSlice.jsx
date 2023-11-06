@@ -12,10 +12,17 @@ const TodoSlice = createSlice({
     name: "todos",
     initialState,
     reducers: {
+        setTodos: (state, action) => {
+            return {
+                ...state.todos,
+                todos: action.payload
+            }
+        },
+
         addTodo: (state, action) => {
             const id = state.todos.at(-1).id + 1;
             return {
-                ...state,
+                ...state.todos,
                 todos: [
                     ...state.todos,
                     {
@@ -27,21 +34,26 @@ const TodoSlice = createSlice({
             }
         },
         updateTodo: (state, action) => {
+            console.log(action.payload)
+            const todoId = action.payload.id
             return {
-                ...state,
-                todos: state.todos.map((todo) => 
-                todo.id !== action.payload.id)
+                ...state.todos,
+                todos: state.todos.filter(
+                    (todo) => 
+                    todo.id !== todoId && (todo.status = !todo.status) 
+                )
             }
         },
         removeTodo: (state, action) => {
             return {
-                ...state,
+                ...state.todos,
                 todos: state.todos.filter((todo) => todo.id !== action.payload.id)
+                // todos: action.payload
             }
         }
 
     }
 });
 
-export const {addTodo, updateTodo, removeTodo} = TodoSlice.actions;
+export const {addTodo, updateTodo, removeTodo, setTodos} = TodoSlice.actions;
 export default TodoSlice.reducer;
