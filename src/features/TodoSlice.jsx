@@ -20,7 +20,7 @@ const TodoSlice = createSlice({
         },
 
         addTodo: (state, action) => {
-            const id = state.todos.at(-1).id + 1;
+            const id = state.todos.length + 1;
             return {
                 ...state.todos,
                 todos: [
