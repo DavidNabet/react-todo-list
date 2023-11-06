@@ -33,16 +33,9 @@ const TodoSlice = createSlice({
                 ]
             }
         },
-        updateTodo: (state, action) => {
-            console.log(action.payload)
-            const todoId = action.payload.id
-            return {
-                ...state.todos,
-                todos: state.todos.filter(
-                    (todo) => 
-                    todo.id !== todoId && (todo.status = !todo.status) 
-                )
-            }
+        updateTodo: ({todos}, action) => {
+            const index = todos.findIndex((todo) => todo.id === action.payload.id);
+            todos[index].status = action.payload.status
         },
         removeTodo: (state, action) => {
             return {

@@ -5,13 +5,10 @@ import { useDispatch } from "react-redux";
 const Todo = ({ todo, copyTask, theme, id }) => {
   const dispatch = useDispatch();
 
-  const handleCheck = (id, status) => {
-    // const updated = copyTask.filter((task) => {
-    //   task.id === id && (task.status = !task.status);
-    //   return task;
-    // });
-    dispatch(updateTodo({ id }));
-  };
+  // const updated = copyTask.filter((task) => {
+  //   task.id === id && (task.status = !task.status);
+  //   return task;
+  // });
 
   const handleRemove = () => {
     if (todo.status) {
@@ -29,7 +26,9 @@ const Todo = ({ todo, copyTask, theme, id }) => {
         name={`todo-${id}`}
         id={`todo-${id}`}
         defaultChecked={todo.status}
-        onClick={() => handleCheck(id)}
+        onChange={() =>
+          dispatch(updateTodo({ status: !todo.status, id: todo.id }))
+        }
       />
       <label
         htmlFor={`todo-${id}`}
