@@ -18,15 +18,7 @@ import { addTodo } from "./features/TodoSlice";
 library.add(faTrash, faTrashAlt, faSun, faMoon);
 
 function App() {
-  //L'ensemble des todos
-  // const [todos, setTodos] = useState([
-  //   { name: "Balancer le vélo", status: false, id: 1 },
-  //   { name: "Pratiquer une activité", status: false, id: 2 },
-  //   { name: "Remplir le frigo", status: true, id: 3 },
-  // ]);
-
   const todos = useSelector((state) => state?.todos?.todos);
-  console.log(todos);
   const dispatch = useDispatch();
 
   const [todoInput, setTodoInput] = useState("");
@@ -43,7 +35,7 @@ function App() {
     const keyword = e.target.value;
     if (keyword !== "") {
       const results = todos.filter((todo) => {
-        return todo.name.toLowerCase().startsWith(keyword.toLowerCase());
+        return todo.name.toLowerCase().includes(keyword.toLowerCase());
       });
       setSearch(results);
     } else {
@@ -51,12 +43,6 @@ function App() {
     }
     setSearchInput(keyword);
   };
-
-  //fonction simplifiée des spread operators qui va rajouter une todo avec un id aléatoire
-  // const addTodo = (name) => {
-  //   const id = todos.at(-1).id + 1;
-  //   setTodos([...todos, { name, status: false, id }]);
-  // };
 
   const addTodoAction = (name) => {
     return dispatch(addTodo({ name }));
@@ -75,7 +61,6 @@ function App() {
             style={{ background: theme.bgCard, boxShadow: theme.boxShadow }}
           >
             <Form
-              // onSubmitForm={handleSubmit}
               addTodo={addTodoAction}
               theme={theme}
               todoInput={todoInput}
