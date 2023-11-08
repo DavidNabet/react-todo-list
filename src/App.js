@@ -35,7 +35,7 @@ function App() {
     const keyword = e.target.value;
     if (keyword !== "") {
       const results = todos.filter((todo) => {
-        return todo.name.toLowerCase().startsWith(keyword.toLowerCase());
+        return todo.name.toLowerCase().includes(keyword.toLowerCase());
       });
       setSearch(results);
     } else {

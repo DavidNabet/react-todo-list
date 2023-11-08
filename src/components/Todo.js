@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { removeTodo, setTodos, updateTodo } from "../features/TodoSlice";
+import { removeTodo, updateTodo } from "../features/TodoSlice";
 import { useDispatch } from "react-redux";
 const Todo = ({ todo, copyTask, theme, id }) => {
   const dispatch = useDispatch();

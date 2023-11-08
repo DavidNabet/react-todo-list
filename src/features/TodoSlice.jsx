@@ -41,7 +41,6 @@ const TodoSlice = createSlice({
             return {
                 ...state.todos,
                 todos: state.todos.filter((todo) => todo.id !== action.payload.id)
-                // todos: action.payload
             }
         }
 
