@@ -1,12 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
 import { ThemeContextProvider } from "./context/ThemeContext";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeContextProvider>
@@ -14,5 +13,4 @@ ReactDOM.render(
       </ThemeContextProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
-);
+)
