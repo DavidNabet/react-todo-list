@@ -1,21 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { removeTodo, updateTodo } from "../features/TodoSlice";
-import { useDispatch } from "react-redux";
-const Todo = ({ todo, copyTask, theme, id }) => {
-  const dispatch = useDispatch();
-
-  // const updated = copyTask.filter((task) => {
-  //   task.id === id && (task.status = !task.status);
-  //   return task;
-  // });
-
-  const handleRemove = () => {
-    if (todo.status) {
-      dispatch(removeTodo({ id }));
-    }
-  };
-
+const Todo = ({ todo, theme, id, handleCheck, handleRemove }) => {
+  console.log("Todo render");
   return (
     <div
       className="todos_wrapper"
@@ -25,10 +11,8 @@ const Todo = ({ todo, copyTask, theme, id }) => {
         type="checkbox"
         name={`todo-${id}`}
         id={`todo-${id}`}
-        defaultChecked={todo.status}
-        onChange={() =>
-          dispatch(updateTodo({ status: !todo.status, id: todo.id }))
-        }
+        checked={todo.status}
+        onChange={(e) => handleCheck(todo.id, e.target.checked)}
       />
       <label
         htmlFor={`todo-${id}`}
@@ -46,7 +30,7 @@ const Todo = ({ todo, copyTask, theme, id }) => {
           boxShadow: theme.boxShadow,
         }}
         className={`on-trash ${todo.status === true ? "active" : ""}`}
-        onClick={handleRemove}
+        onClick={() => handleRemove(todo)}
       >
         <FontAwesomeIcon icon="trash" />
       </span>
