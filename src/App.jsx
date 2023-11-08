@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-// import uuid from "uuid/dist/v1";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faTrash,
@@ -101,5 +100,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
